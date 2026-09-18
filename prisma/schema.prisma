@@ -1,0 +1,127 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model User {
+  id           BigInt   @id @default(autoincrement())
+  email        String   @unique @db.VarChar(255)
+  passwordHash String   @map("password_hash") @db.VarChar(255)
+  nickname     String   @db.VarChar(50)
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  watchlists Watchlist[]
+
+  portfolio Portfolio?
+
+  holdings Holding[]
+
+  trades Trade[]
+
+  autoTrades AutoTrade[]
+
+  aiPredictions AiPrediction[]
+
+  @@map("users")
+}
+
+model Watchlist {
+  id        BigInt   @id @default(autoincrement())
+  userId    BigInt   @map("user_id")
+  symbol    String   @db.VarChar(20)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, symbol])
+  @@map("watchlists")
+}
+
+model Portfolio {
+  id        BigInt   @id @default(autoincrement())
+  userId    BigInt   @unique @map("user_id")
+  cash      Decimal  @default(10000000) @db.Decimal(15, 2)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("portfolios")
+}
+
+model Holding {
+  id           BigInt   @id @default(autoincrement())
+  userId       BigInt   @map("user_id")
+  symbol       String   @db.VarChar(20)
+  quantity     Int
+  averagePrice Decimal  @map("average_price") @db.Decimal(15, 2)
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, symbol])
+  @@map("holdings")
+}
+
+enum TradeType {
+  BUY
+  SELL
+}
+
+model Trade {
+  id         BigInt    @id @default(autoincrement())
+  userId     BigInt    @map("user_id")
+  symbol     String    @db.VarChar(20)
+  type       TradeType
+  quantity   Int
+  price      Decimal   @db.Decimal(15, 2)
+  totalPrice Decimal   @map("total_price") @db.Decimal(15, 2)
+  createdAt  DateTime  @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("trades")
+}
+
+enum AutoTradeStatus {
+  ACTIVE
+  STOPPED
+  COMPLETED
+}
+
+model AutoTrade {
+  id            BigInt          @id @default(autoincrement())
+  userId        BigInt          @map("user_id")
+  symbol        String          @db.VarChar(20)
+  quantity      Int
+  targetPrice   Decimal         @map("target_price") @db.Decimal(15, 2)
+  stopLossPrice Decimal         @map("stop_loss_price") @db.Decimal(15, 2)
+  status        AutoTradeStatus @default(ACTIVE)
+  createdAt     DateTime        @default(now()) @map("created_at")
+  updatedAt     DateTime        @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("auto_trades")
+}
+
+model AiPrediction {
+  id               BigInt   @id @default(autoincrement())
+  userId           BigInt?  @map("user_id")
+  symbol           String   @db.VarChar(20)
+  predictionPeriod String   @map("prediction_period") @db.VarChar(30)
+  upProbability    Decimal  @map("up_probability") @db.Decimal(5, 4)
+  downProbability  Decimal  @map("down_probability") @db.Decimal(5, 4)
+  expectedMinPrice Decimal  @map("expected_min_price") @db.Decimal(15, 2)
+  expectedMaxPrice Decimal  @map("expected_max_price") @db.Decimal(15, 2)
+  confidence       Decimal  @db.Decimal(5, 4)
+  createdAt        DateTime @default(now()) @map("created_at")
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@map("ai_predictions")
+}
