@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>관심종목 | StockPilot</title>
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/components.css" />
+    <link rel="stylesheet" href="./css/favorites.css" />
+  </head>
+
+  <body>
+    <header id="appHeader" class="header"></header>
+
+    <main class="favorites-container">
+      <section class="favorites-heading">
+        <div>
+          <span class="section-small-title">WATCHLIST</span>
+          <h1>관심종목</h1>
+          <p>관심 있는 종목의 가격 흐름을 빠르게 확인해보세요.</p>
+        </div>
+
+        <div class="favorites-count-card">
+          <span>저장한 종목</span>
+          <strong id="favoriteCount">0</strong>
+        </div>
+      </section>
+
+      <div class="favorites-notice">
+        <span>i</span>
+        <p id="favoritesNoticeText">관심종목을 불러오고 있습니다.</p>
+      </div>
+
+      <section id="favoritesLoading" class="favorites-loading" aria-label="관심종목 불러오는 중" aria-busy="true">
+        <div class="favorite-skeleton"><i></i><span></span><b></b></div>
+        <div class="favorite-skeleton"><i></i><span></span><b></b></div>
+        <div class="favorite-skeleton"><i></i><span></span><b></b></div>
+      </section>
+
+      <section id="favoritesContent" class="favorites-content hidden">
+        <div class="favorites-list-header">
+          <span>종목</span>
+          <span>현재가</span>
+        </div>
+        <div id="favoritesList" class="favorites-list"></div>
+      </section>
+
+      <section id="favoritesEmpty" class="favorites-empty hidden">
+        <div class="favorites-empty-icon">☆</div>
+        <h2>아직 관심종목이 없어요</h2>
+        <p>홈이나 종목 상세에서 별 버튼을 누르면 이곳에서 모아볼 수 있어요.</p>
+        <a href="./search.html" class="favorites-search-button">종목 찾아보기</a>
+      </section>
+    </main>
+
+    <script src="./js/header.js"></script>
+    <script src="./js/config.js"></script>
+    <script src="./js/stock-data.js"></script>
+    <script src="./js/watchlist.js"></script>
+    <script src="./js/favorites.js"></script>
+  </body>
+</html>

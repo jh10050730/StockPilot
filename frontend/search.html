@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>종목 검색 | StockPilot</title>
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/components.css" />
+    <link rel="stylesheet" href="./css/search.css" />
+  </head>
+
+  <body>
+    <header id="appHeader" class="header"></header>
+
+    <main class="stock-search-page">
+      <section class="search-heading">
+        <span class="section-small-title">STOCK SEARCH</span>
+        <h1>어떤 종목을 찾으세요?</h1>
+        <p>회사명이나 종목코드로 빠르게 찾아보세요.</p>
+      </section>
+
+      <section class="stock-search-panel" aria-label="종목 검색">
+        <div class="stock-search-field">
+          <span class="stock-search-icon" aria-hidden="true">⌕</span>
+          <input
+            id="stockSearchPageInput"
+            type="search"
+            placeholder="예: 삼성전자, 005930"
+            autocomplete="off"
+            aria-label="종목명 또는 종목코드 검색"
+            aria-controls="stockSearchPageResults"
+            aria-expanded="false"
+          />
+          <button id="clearSearchButton" class="clear-search-button hidden" type="button" aria-label="검색어 지우기">×</button>
+        </div>
+      </section>
+
+      <section id="searchStartContent" class="search-start-content">
+        <div id="recentSearchSection" class="search-block hidden">
+          <div class="search-block-title">
+            <h2>최근 검색</h2>
+            <button id="clearRecentButton" type="button">전체 삭제</button>
+          </div>
+          <div id="recentSearchList" class="recent-search-list"></div>
+        </div>
+
+        <div class="search-block">
+          <div class="search-block-title">
+            <div>
+              <h2>많이 찾는 종목</h2>
+              <p>현재는 화면 확인을 위한 예시 순위예요.</p>
+            </div>
+          </div>
+        <div id="popularStockList" class="stock-result-list" aria-label="많이 찾는 종목"></div>
+        </div>
+      </section>
+
+      <section id="searchResultContent" class="search-results hidden" aria-live="polite">
+        <div class="search-result-heading">
+          <h2>검색 결과</h2>
+          <span id="searchResultCount">0개</span>
+        </div>
+        <div id="stockSearchPageResults" class="stock-result-list" aria-label="종목 검색 결과"></div>
+        <div id="searchEmptyState" class="search-empty hidden">
+          <div>⌕</div>
+          <h2>검색 결과가 없어요</h2>
+          <p>종목명이나 종목코드를 다시 확인해주세요.</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="./js/header.js"></script>
+    <script src="./js/stock-data.js"></script>
+    <script src="./js/search.js"></script>
+  </body>
+</html>

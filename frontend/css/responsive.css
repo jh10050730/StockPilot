@@ -1,0 +1,435 @@
+/* =========================
+   HOME - Tablet
+========================= */
+
+@media (max-width: 1000px) {
+  .nav {
+    display: none;
+  }
+
+  .logo {
+    flex: 1;
+  }
+
+  .ai-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-preview-card {
+    display: none;
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =========================
+   STOCK - Tablet
+========================= */
+
+@media (max-width: 900px) {
+  .stock-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stock-side-column {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .order-card {
+    grid-column: span 2;
+  }
+}
+
+/* =========================
+   HOME - Mobile
+========================= */
+
+@media (max-width: 760px) {
+  .container {
+    padding: 18px 16px calc(110px + env(safe-area-inset-bottom));
+  }
+
+  .header-inner {
+    height: 62px;
+
+    padding: 0 16px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .header-icon {
+    display: none;
+  }
+
+  .login-button {
+    padding: 8px 13px;
+
+    font-size: 13px;
+  }
+
+  .search-section {
+    margin-bottom: 20px;
+  }
+
+  .home-summary {
+    margin-bottom: 18px;
+    border-radius: 23px;
+  }
+
+  .summary-content,
+  .logged-out-summary {
+    padding: 23px 20px;
+  }
+
+  .summary-top h1,
+  .logged-out-summary h1 {
+    font-size: 21px;
+  }
+
+  .asset-overview {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-top: 25px;
+  }
+
+  .asset-main strong {
+    font-size: 32px;
+  }
+
+  .logged-out-summary {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .summary-login-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .search-box {
+    border-radius: 15px;
+  }
+
+  .search-box input {
+    font-size: 14px;
+
+    padding: 15px 0;
+  }
+
+  .ai-hero {
+    padding: 32px 22px 26px;
+
+    border-radius: 23px;
+
+    min-height: auto;
+
+    margin-bottom: 42px;
+  }
+
+  .home-ai-briefing {
+    order: 5;
+    margin-bottom: 42px;
+  }
+
+  .ai-hero {
+    order: 4;
+  }
+
+  .ai-response-section {
+    order: 6;
+  }
+
+  .home-stocks-grid {
+    order: 7;
+  }
+
+  .market-section {
+    order: 3;
+  }
+
+  .ai-hero h1 {
+    font-size: clamp(32px, 9vw, 38px);
+
+    letter-spacing: -1.3px;
+  }
+
+  .ai-hero-left > p {
+    font-size: 15px;
+  }
+
+  .market-grid {
+    grid-template-columns: repeat(2, minmax(390px, 1fr));
+    overflow-x: auto;
+    margin: 0 -16px;
+    padding: 0 16px 8px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .market-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .market-card {
+    scroll-snap-align: start;
+
+    grid-template-columns: minmax(150px, 0.9fr) minmax(170px, 1.1fr);
+  }
+
+  .market-section {
+    padding: 22px 18px;
+  }
+
+  .market-line-chart {
+    height: 115px;
+  }
+
+  .bottom-grid {
+    grid-template-columns: 1fr;
+
+    gap: 10px;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-briefing {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .briefing-button {
+    width: 100%;
+  }
+
+  .floating-ai-button {
+    right: 18px;
+    bottom: calc(82px + env(safe-area-inset-bottom));
+  }
+
+  .section-title-row h2 {
+    font-size: 21px;
+  }
+}
+
+/* =========================
+   STOCK - Mobile
+========================= */
+
+@media (max-width: 650px) {
+  .stock-page-container {
+    padding: 20px 16px calc(170px + env(safe-area-inset-bottom));
+  }
+
+  .stock-detail-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 18px;
+
+    margin-bottom: 24px;
+  }
+
+  .stock-main-price {
+    text-align: left;
+  }
+
+  .stock-main-price strong {
+    font-size: 34px;
+
+    letter-spacing: -1.3px;
+  }
+
+  .stock-detail-grid {
+    display: block;
+  }
+
+  .stock-side-column {
+    display: flex;
+
+    flex-direction: column;
+  }
+
+  .large-chart {
+    height: 440px;
+    margin: 0 -10px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scrollbar-width: thin;
+  }
+
+  .large-chart svg {
+    width: 900px;
+    min-width: 900px;
+  }
+
+  .chart-basis-row {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .chart-basis-row em {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .detail-card {
+    padding: 22px 18px;
+    border-radius: 21px;
+  }
+
+  .chart-periods {
+    overflow-x: auto;
+  }
+
+  .detail-card-header {
+    align-items: flex-start;
+
+    gap: 12px;
+
+    flex-direction: column;
+  }
+
+  .chart-info-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .analysis-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .analysis-score {
+    border-right: none;
+
+    border-bottom: 1px solid #dce8fa;
+
+    padding: 0 0 18px;
+  }
+
+  .analysis-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .order-sheet-open {
+    overflow: hidden;
+  }
+
+  .mobile-trade-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: calc(68px + env(safe-area-inset-bottom));
+    z-index: 1400;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 9px;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.97);
+    border-top: 1px solid #edf0f2;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .mobile-trade-button {
+    min-height: 48px;
+    border: 0;
+    border-radius: 14px;
+    color: white;
+    font-size: 16px;
+    font-weight: 800;
+  }
+
+  .mobile-trade-button.sell {
+    background-color: #3182f6;
+  }
+
+  .mobile-trade-button.buy {
+    background-color: #f04452;
+  }
+
+  .mobile-order-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2900;
+    display: block;
+    visibility: hidden;
+    background-color: rgba(15, 23, 42, 0.48);
+    opacity: 0;
+    transition: opacity 0.22s, visibility 0.22s;
+  }
+
+  .mobile-order-overlay.visible {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .order-card {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3000;
+    max-height: 88vh;
+    margin: 0;
+    padding: 12px 20px calc(22px + env(safe-area-inset-bottom));
+    overflow-y: auto;
+    border: 0;
+    border-radius: 26px 26px 0 0;
+    box-shadow: 0 -20px 60px rgba(15, 23, 42, 0.18);
+    transform: translateY(105%);
+    visibility: hidden;
+    transition: transform 0.25s ease, visibility 0.25s;
+  }
+
+  .order-card.mobile-open {
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .mobile-sheet-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 50px;
+    margin-bottom: 8px;
+  }
+
+  .mobile-sheet-handle {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 42px;
+    height: 5px;
+    border-radius: 999px;
+    background-color: #d1d6db;
+    transform: translateX(-50%);
+  }
+
+  .mobile-sheet-header strong {
+    padding-top: 8px;
+    font-size: 18px;
+  }
+
+  .mobile-sheet-header button {
+    width: 34px;
+    height: 34px;
+    margin-top: 6px;
+    border: 0;
+    border-radius: 50%;
+    background-color: #f2f4f6;
+    color: #6b7684;
+    font-size: 22px;
+  }
+}

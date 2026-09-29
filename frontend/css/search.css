@@ -1,0 +1,72 @@
+.stock-search-page {
+  width: min(100% - 40px, 880px);
+  margin: 0 auto;
+  padding: 64px 0 110px;
+}
+
+.search-heading { margin-bottom: 28px; }
+.search-heading h1 { margin-top: 8px; font-size: clamp(30px, 5vw, 44px); letter-spacing: -1.8px; }
+.search-heading p { margin-top: 10px; color: var(--color-text-secondary); font-size: 17px; }
+
+.stock-search-panel { position: sticky; top: 84px; z-index: 20; margin-bottom: 42px; }
+.stock-search-field {
+  display: flex;
+  align-items: center;
+  min-height: 72px;
+  padding: 0 22px;
+  border: 2px solid transparent;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: var(--shadow-card);
+  transition: border-color .2s, box-shadow .2s;
+}
+.stock-search-field:focus-within { border-color: var(--color-primary); box-shadow: 0 14px 36px rgba(49,130,246,.13); }
+.stock-search-icon { margin-right: 14px; color: var(--color-text-secondary); font-size: 29px; transform: rotate(-20deg); }
+.stock-search-field input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--color-text); font-size: 20px; font-weight: 700; }
+.stock-search-field input::placeholder { color: #b0b8c1; font-weight: 600; }
+.clear-search-button { width: 32px; height: 32px; border: 0; border-radius: 50%; background: #e5e8eb; color: #6b7684; font-size: 22px; line-height: 1; }
+
+.search-start-content, .search-results { display: grid; gap: 38px; }
+.search-block { padding: 30px; border-radius: 26px; background: #fff; box-shadow: var(--shadow-card); }
+.search-block-title, .search-result-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+.search-block-title h2, .search-result-heading h2 { font-size: 21px; letter-spacing: -.5px; }
+.search-block-title p { margin-top: 5px; color: var(--color-text-tertiary); font-size: 13px; }
+.search-block-title button { border: 0; background: transparent; color: var(--color-text-tertiary); font-size: 14px; }
+.search-result-heading { align-items: center; padding: 0 4px; }
+.search-result-heading span { color: var(--color-text-secondary); font-weight: 700; }
+
+.recent-search-list { display: flex; flex-wrap: wrap; gap: 9px; }
+.recent-search-chip { border: 0; border-radius: 999px; padding: 10px 15px; background: #f2f4f6; color: var(--color-text); font-weight: 700; }
+
+.stock-result-list { overflow: hidden; border-radius: 22px; background: #fff; }
+.stock-result-item { display: grid; grid-template-columns: 48px minmax(0,1fr) auto; align-items: center; gap: 14px; width: 100%; padding: 18px 20px; border: 0; border-bottom: 1px solid var(--color-border); background: #fff; text-align: left; transition: background-color .18s; }
+.stock-result-item:last-child { border-bottom: 0; }
+.stock-result-item:hover { background: #f8f9fa; }
+.stock-rank { color: var(--color-text-tertiary); font-weight: 800; text-align: center; }
+.stock-logo { display: none; }
+.stock-main { min-width: 0; }
+.stock-name { display: block; font-size: 17px; font-weight: 800; }
+.stock-meta { display: block; margin-top: 5px; color: var(--color-text-tertiary); font-size: 13px; }
+.stock-price { text-align: right; }
+.stock-price strong { display: block; font-size: 16px; }
+.stock-price span { display: block; margin-top: 5px; font-size: 13px; font-weight: 700; }
+.stock-price .rise { color: var(--color-rise); }
+.stock-price .fall { color: var(--color-fall); }
+.search-empty { padding: 70px 20px; border-radius: 24px; background: #fff; text-align: center; }
+.search-empty div { color: #b0b8c1; font-size: 42px; }
+.search-empty h2 { margin-top: 14px; font-size: 20px; }
+.search-empty p { margin-top: 8px; color: var(--color-text-secondary); }
+
+@media (max-width: 700px) {
+  .stock-search-page { width: 100%; padding: 30px 20px 110px; }
+  .search-heading { margin-bottom: 22px; }
+  .search-heading h1 { font-size: 30px; }
+  .search-heading p { font-size: 15px; }
+  .stock-search-panel { top: 12px; margin: 0 -6px 30px; }
+  .stock-search-field { min-height: 62px; padding: 0 17px; border-radius: 18px; }
+  .stock-search-field input { font-size: 17px; }
+  .search-block { padding: 24px 18px; border-radius: 22px; }
+  .stock-result-item { grid-template-columns: 34px minmax(0,1fr) auto; gap: 10px; padding: 17px 8px; }
+  .stock-name { font-size: 16px; }
+  .stock-price strong { font-size: 15px; }
+}

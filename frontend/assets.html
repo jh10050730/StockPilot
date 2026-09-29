@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>내 자산 | StockPilot</title>
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/components.css" />
+    <link rel="stylesheet" href="./css/assets.css" />
+  </head>
+
+  <body>
+    <header id="appHeader" class="header"></header>
+
+    <main class="assets-container">
+      <section class="assets-title-row">
+        <div>
+          <span class="section-small-title">MY ASSETS</span>
+          <h1>내 자산</h1>
+          <p>투자 현황과 보유 종목을 한눈에 확인해보세요.</p>
+        </div>
+        <button id="toggleAssetsButton" class="assets-visibility-button" type="button" aria-pressed="false">
+          금액 숨기기
+        </button>
+      </section>
+
+      <div class="assets-preview-notice">
+        <span>i</span>
+        <p>현재 자산과 주문 내역은 화면 개발을 위한 예시 데이터입니다.</p>
+      </div>
+
+      <section class="asset-balance-card">
+        <div class="balance-primary">
+          <span>총 자산</span>
+          <strong class="private-value" data-value="12,480,000원">12,480,000원</strong>
+          <p class="increase private-value" data-value="오늘 +124,500원 (+1.01%)">오늘 +124,500원 (+1.01%)</p>
+        </div>
+
+        <div class="balance-breakdown">
+          <div>
+            <span>주식 평가금액</span>
+            <strong class="private-value" data-value="9,280,000원">9,280,000원</strong>
+          </div>
+          <div>
+            <span>보유 현금</span>
+            <strong class="private-value" data-value="3,200,000원">3,200,000원</strong>
+          </div>
+          <div>
+            <span>누적 평가손익</span>
+            <strong class="increase private-value" data-value="+680,000원">+680,000원</strong>
+          </div>
+        </div>
+      </section>
+
+      <div class="assets-grid">
+        <section class="assets-card allocation-card">
+          <div class="assets-card-heading">
+            <div>
+              <span class="section-small-title">ALLOCATION</span>
+              <h2>자산 구성</h2>
+            </div>
+          </div>
+
+          <div class="allocation-content">
+            <div class="allocation-chart" role="img" aria-label="삼성전자 42%, SK하이닉스 21%, NAVER 11%, 현금 26%">
+              <div>
+                <strong>74%</strong>
+                <span>주식</span>
+              </div>
+            </div>
+            <ul class="allocation-legend">
+              <li><span class="legend-dot samsung"></span><b>삼성전자</b><em>42%</em></li>
+              <li><span class="legend-dot hynix"></span><b>SK하이닉스</b><em>21%</em></li>
+              <li><span class="legend-dot naver"></span><b>NAVER</b><em>11%</em></li>
+              <li><span class="legend-dot cash"></span><b>현금</b><em>26%</em></li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="assets-card ai-portfolio-card">
+          <span class="section-small-title">STOCKPILOT AI</span>
+          <h2>포트폴리오 한줄 분석</h2>
+          <p>반도체 종목의 비중이 높아요. 업종 분산을 고려하면 변동 위험을 줄이는 데 도움이 될 수 있어요.</p>
+          <button type="button" id="portfolioAiButton">AI 상세 분석 보기</button>
+        </section>
+      </div>
+
+      <section class="assets-section">
+        <div class="assets-section-heading">
+          <div>
+            <span class="section-small-title">HOLDINGS</span>
+            <h2>보유 종목</h2>
+          </div>
+          <span>3개 종목</span>
+        </div>
+
+        <div id="holdingsList" class="holdings-list"></div>
+      </section>
+
+      <section class="assets-section activity-section">
+        <div class="assets-section-heading">
+          <div>
+            <span class="section-small-title">ACTIVITY</span>
+            <h2>최근 주문</h2>
+          </div>
+          <button type="button" class="text-button">전체보기</button>
+        </div>
+
+        <div id="activityList" class="activity-list"></div>
+      </section>
+    </main>
+
+    <script src="./js/header.js"></script>
+    <script src="./js/assets.js"></script>
+  </body>
+</html>

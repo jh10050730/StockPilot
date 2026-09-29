@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>종목 상세 | StockPilot</title>
+
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/components.css" />
+    <link rel="stylesheet" href="./css/stock.css" />
+    <link rel="stylesheet" href="./css/responsive.css" />
+  </head>
+
+  <body>
+    <!-- 상단 -->
+    <header id="appHeader" class="header"></header>
+
+    <main class="stock-page-container">
+      <!-- 뒤로가기 -->
+      <button class="back-button" onclick="history.back()">← 종목 목록</button>
+
+      <!-- 종목 헤더 -->
+      <section class="stock-detail-header">
+        <div>
+          <div class="stock-title-line">
+            <h1 id="stockName">삼성전자</h1>
+
+            <button id="favoriteButton" class="favorite-button">☆</button>
+          </div>
+
+          <span id="stockCode" class="detail-stock-code"> 005930 · KOSPI </span>
+        </div>
+
+        <div class="stock-main-price">
+          <strong id="stockPrice"> 82,300원 </strong>
+
+          <span id="stockChange" class="increase"> +1,100 (+1.35%) </span>
+        </div>
+      </section>
+
+      <!-- 메인 Grid -->
+      <div class="stock-detail-grid">
+        <!-- 왼쪽 -->
+        <div class="stock-main-column">
+          <!-- 차트 -->
+          <section class="detail-card chart-detail-card">
+            <div class="detail-card-header">
+              <h2>주가 차트</h2>
+
+              <div class="chart-periods">
+                <button class="period-button">1시간</button>
+
+                <button class="period-button active">1일</button>
+
+                <button class="period-button">일주일</button>
+
+                <button class="period-button">한달</button>
+              </div>
+            </div>
+
+            <div class="chart-basis-row">
+              <span>내 평균 매수가</span>
+              <strong id="purchasePriceLabel">78,000원</strong>
+              <em id="chartComparisonText">평균 매수가보다 5.51% 높아요</em>
+            </div>
+
+            <!-- 실제 API 연결 전 차트 -->
+            <div class="large-chart">
+              <svg id="stockPriceChart" class="chart-up" viewBox="0 0 900 420" preserveAspectRatio="xMidYMid meet" role="img" aria-label="삼성전자 1일 가격 흐름 예시 차트">
+                <defs>
+                  <linearGradient id="stockChartAreaUp" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#f04452" stop-opacity="0.2" />
+                    <stop offset="100%" stop-color="#f04452" stop-opacity="0" />
+                  </linearGradient>
+                  <linearGradient id="stockChartAreaDown" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#3182f6" stop-opacity="0.2" />
+                    <stop offset="100%" stop-color="#3182f6" stop-opacity="0" />
+                  </linearGradient>
+                </defs>
+
+                <g class="chart-grid-lines">
+                  <line x1="35" y1="70" x2="870" y2="70" />
+                  <line x1="35" y1="150" x2="870" y2="150" />
+                  <line x1="35" y1="230" x2="870" y2="230" />
+                  <line x1="35" y1="310" x2="870" y2="310" />
+                </g>
+
+                <line class="purchase-price-line" x1="35" y1="385" x2="870" y2="385" />
+                <text id="chartPurchasePriceText" class="purchase-price-text" x="860" y="377" text-anchor="end">내 평균 78,000원</text>
+
+                <path
+                  id="stockChartArea"
+                  class="stock-chart-area"
+                  d="M35 320 L70 300 L105 310 L140 280 L175 290 L210 260 L245 270 L280 230 L315 245 L350 210 L385 220 L420 180 L455 195 L490 150 L525 165 L560 120 L595 135 L630 65 L665 95 L700 85 L735 112 L770 100 L805 118 L840 105 L870 110 L870 385 L35 385 Z"
+                  fill="url(#stockChartAreaUp)"
+                />
+                <polyline
+                  id="stockChartLine"
+                  points="35,320 70,300 105,310 140,280 175,290 210,260 245,270 280,230 315,245 350,210 385,220 420,180 455,195 490,150 525,165 560,120 595,135 630,65 665,95 700,85 735,112 770,100 805,118 840,105 870,110"
+                  class="stock-chart-line"
+                  fill="none"
+                  stroke="#f04452"
+                  stroke-width="4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <g class="low-marker">
+                  <line x1="35" y1="320" x2="35" y2="345" stroke="#3182f6" />
+                  <circle cx="35" cy="320" r="6" fill="#3182f6" stroke="#ffffff" />
+                  <text x="45" y="350" fill="#3182f6">최저가</text>
+                  <text id="chartLowPriceText" x="45" y="370" fill="#3182f6">80,900원</text>
+                </g>
+
+                <g class="peak-marker">
+                  <line id="chartPeakLine" x1="630" y1="65" x2="630" y2="42" stroke="#f04452" />
+                  <circle id="chartPeakCircle" cx="630" cy="65" r="6" fill="#f04452" stroke="#ffffff" />
+                  <text id="chartPeakTimeText" x="630" y="17" text-anchor="middle" fill="#f04452">최고가</text>
+                  <text id="chartPeakPriceText" x="630" y="37" text-anchor="middle" fill="#f04452">83,100원</text>
+                </g>
+
+                <g class="current-marker">
+                  <line id="chartCurrentLine" x1="870" y1="110" x2="870" y2="142" stroke="#f04452" />
+                  <circle id="chartCurrentCircle" cx="870" cy="110" r="6" fill="#f04452" stroke="#ffffff" />
+                  <text id="chartCurrentTimeText" class="marker-label-hidden" x="860" y="148" text-anchor="end" fill="#f04452"></text>
+                  <text id="chartCurrentPriceText" x="860" y="162" text-anchor="end" fill="#f04452">82,300원</text>
+                </g>
+
+                <g class="chart-time-labels">
+                  <text x="35" y="410">12:30</text>
+                  <text x="300" y="410">13:30</text>
+                  <text x="570" y="410">14:30</text>
+                  <text x="830" y="410">15:30</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="chart-info-row">
+              <div>
+                <span>시가</span>
+                <strong>81,300원</strong>
+              </div>
+
+              <div>
+                <span>고가</span>
+                <strong>83,100원</strong>
+              </div>
+
+              <div>
+                <span>저가</span>
+                <strong>80,900원</strong>
+              </div>
+
+              <div>
+                <span>거래량</span>
+                <strong>12,350,210</strong>
+              </div>
+            </div>
+          </section>
+
+          <!-- AI 종목 분석 -->
+          <section class="detail-card ai-stock-analysis">
+            <div class="detail-card-header">
+              <div>
+                <span class="section-small-title"> STOCKPILOT AI </span>
+
+                <h2>AI 종목 분석</h2>
+              </div>
+
+              <button id="refreshAiButton" class="text-button">
+                다시 분석
+              </button>
+            </div>
+
+            <div class="analysis-summary">
+              <div class="analysis-score">
+                <span> AI 분석 </span>
+
+                <strong> 준비 중 </strong>
+
+                <small> 실제 AI 연결 예정 </small>
+              </div>
+
+              <div class="analysis-text">
+                <h3>삼성전자 흐름을 분석해드릴게요.</h3>
+
+                <p>
+                  현재는 실제 주가 API와 AI 모델이 연결되지 않았기 때문에 예시
+                  화면만 표시됩니다.
+                </p>
+
+                <p>
+                  추후에는 가격 흐름, 거래량, 뉴스, 재무 데이터 등을 분석해
+                  이곳에서 설명할 예정입니다.
+                </p>
+              </div>
+            </div>
+
+            <div class="analysis-grid">
+              <article>
+                <span> 가격 흐름 </span>
+
+                <strong> 분석 예정 </strong>
+              </article>
+
+              <article>
+                <span> 거래량 </span>
+
+                <strong> 분석 예정 </strong>
+              </article>
+
+              <article>
+                <span> 뉴스 분위기 </span>
+
+                <strong> 분석 예정 </strong>
+              </article>
+            </div>
+          </section>
+
+          <!-- 뉴스 -->
+          <section class="detail-card">
+            <div class="detail-card-header">
+              <h2>관련 뉴스</h2>
+
+              <button class="text-button">전체보기</button>
+            </div>
+
+            <div class="news-list">
+              <article class="news-item">
+                <div>
+                  <strong> 삼성전자 관련 뉴스가 여기에 표시됩니다. </strong>
+
+                  <p>실제 뉴스 API 연결 후 제목과 요약을 보여줄 예정입니다.</p>
+
+                  <span> StockPilot · 예시 </span>
+                </div>
+              </article>
+
+              <article class="news-item">
+                <div>
+                  <strong> ✦ AI 뉴스 요약 기능 </strong>
+
+                  <p>
+                    여러 기사를 AI가 읽고 핵심 내용만 간단하게 정리하도록 만들
+                    예정입니다.
+                  </p>
+
+                  <span> StockPilot AI </span>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+
+        <!-- 오른쪽 -->
+        <aside class="stock-side-column">
+          <!-- 주문 -->
+          <section class="order-card">
+            <div class="mobile-sheet-header">
+              <span class="mobile-sheet-handle"></span>
+              <strong id="mobileOrderTitle">주문하기</strong>
+              <button id="closeOrderSheetButton" type="button" aria-label="주문창 닫기">×</button>
+            </div>
+
+            <div class="order-tabs">
+              <button id="buyTab" class="order-tab active">매수</button>
+
+              <button id="sellTab" class="order-tab">매도</button>
+            </div>
+
+            <div class="order-form">
+              <label> 주문 가격 </label>
+
+              <div class="order-input">
+                <input id="orderPrice" type="number" value="82300" min="1" step="1" inputmode="numeric" />
+
+                <span> 원 </span>
+              </div>
+
+              <label> 수량 </label>
+
+              <div class="order-input">
+                <input id="orderQuantity" type="number" value="1" min="1" step="1" inputmode="numeric" />
+
+                <span> 주 </span>
+              </div>
+
+              <div class="quantity-buttons">
+                <button data-quantity="1">+1</button>
+
+                <button data-quantity="5">+5</button>
+
+                <button data-quantity="10">+10</button>
+              </div>
+
+              <div class="order-total">
+                <span> 예상 주문금액 </span>
+
+                <strong id="orderTotal"> 82,300원 </strong>
+              </div>
+
+              <p id="orderError" class="order-error hidden" role="alert"></p>
+
+              <button id="orderButton" class="order-submit buy">
+                매수하기
+              </button>
+
+              <p class="order-notice">
+                현재 주문 기능은 화면 테스트용이며 실제 거래는 실행되지
+                않습니다.
+              </p>
+            </div>
+          </section>
+
+          <!-- 자동주문 -->
+          <section class="side-card">
+            <div class="detail-card-header">
+              <div>
+                <span class="section-small-title"> AUTO ORDER </span>
+
+                <h2>자동주문</h2>
+              </div>
+            </div>
+
+            <p class="side-description">
+              원하는 가격에 도달하면 실행할 조건을 미리 설정할 수 있어요.
+            </p>
+
+            <button id="openAutoOrderButton" class="auto-order-button">
+              + 자동주문 조건 만들기
+            </button>
+
+            <div id="autoOrderList" class="auto-order-list"></div>
+          </section>
+
+          <!-- AI 질문 -->
+          <section class="side-card">
+            <div class="ai-side-title">✦ AI에게 물어보기</div>
+
+            <p class="side-description">
+              이 종목에 대해 궁금한 내용을 AI에게 질문해보세요.
+            </p>
+
+            <div class="side-ai-input">
+              <input
+                id="stockAiInput"
+                type="text"
+                placeholder="예: 최근 흐름 알려줘"
+              />
+
+              <button id="stockAiSend">↑</button>
+            </div>
+
+            <div id="stockAiResponse" class="stock-ai-response hidden"></div>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <div id="mobileOrderOverlay" class="mobile-order-overlay" aria-hidden="true"></div>
+
+    <div class="mobile-trade-bar" aria-label="빠른 주문">
+      <button id="mobileSellButton" class="mobile-trade-button sell" type="button">매도</button>
+      <button id="mobileBuyButton" class="mobile-trade-button buy" type="button">매수</button>
+    </div>
+
+    <!-- 자동주문 Modal -->
+    <div id="autoOrderModal" class="modal-overlay hidden">
+      <div class="modal">
+        <div class="modal-header">
+          <div>
+            <span class="section-small-title"> AUTO ORDER </span>
+
+            <h2>자동주문 설정</h2>
+          </div>
+
+          <button id="closeModalButton" class="modal-close">×</button>
+        </div>
+
+        <div class="modal-body">
+          <label> 주문 종류 </label>
+
+          <select id="autoOrderAction">
+            <option value="sell">매도</option>
+
+            <option value="buy">매수</option>
+          </select>
+
+          <label> 실행 조건 </label>
+
+          <select id="autoOrderCondition">
+            <option value="above">목표 가격 이상</option>
+
+            <option value="below">목표 가격 이하</option>
+          </select>
+
+          <label> 목표 가격 </label>
+
+          <div class="order-input">
+            <input id="autoOrderPrice" type="number" value="85000" />
+
+            <span> 원 </span>
+          </div>
+
+          <label> 수량 </label>
+
+          <div class="order-input">
+            <input id="autoOrderQuantity" type="number" value="1" min="1" />
+
+            <span> 주 </span>
+          </div>
+
+          <div id="autoOrderPreview" class="auto-order-preview"></div>
+
+          <button id="saveAutoOrderButton" class="modal-submit">
+            자동주문 조건 저장
+          </button>
+
+          <p class="modal-notice">
+            현재는 기능 구현 테스트용 조건 저장이며 실제 증권 주문은 실행되지
+            않습니다.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/header.js"></script>
+    <script src="./js/config.js"></script>
+    <script src="./js/watchlist.js"></script>
+    <script src="./js/stock.js"></script>
+  </body>
+</html>

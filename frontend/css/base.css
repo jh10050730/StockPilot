@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-primary: #3182f6;
+  --color-primary-strong: #1b64da;
+  --color-text: #191f28;
+  --color-text-secondary: #6b7684;
+  --color-text-tertiary: #8b95a1;
+  --color-surface: #ffffff;
+  --color-background: #f7f8fa;
+  --color-border: #edf0f2;
+  --color-rise: #f04452;
+  --color-fall: #3182f6;
+  --shadow-card: 0 10px 32px rgba(25, 31, 40, 0.06);
+  --radius-small: 14px;
+  --radius-medium: 22px;
+  --radius-large: 30px;
+  --content-width: 1120px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Pretendard, "Noto Sans KR", Arial, sans-serif;
+
+  background-color: #f7f8fa;
+  color: #191f28;
+
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid rgba(49, 130, 246, 0.25);
+  outline-offset: 2px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.hidden {
+  display: none !important;
+}

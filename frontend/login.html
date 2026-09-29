@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>로그인 | StockPilot</title>
+
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/components.css" />
+    <link rel="stylesheet" href="./css/auth.css" />
+    <link rel="stylesheet" href="./css/responsive.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="header-inner">
+        <a href="./index.html" class="logo"> StockPilot </a>
+      </div>
+    </header>
+
+    <main class="auth-page">
+      <section class="auth-card">
+        <div class="auth-top">
+          <span class="auth-label"> STOCKPILOT </span>
+
+          <h1>다시 만나서 반가워요</h1>
+
+          <p>로그인하고 관심종목과 투자 정보를 확인해보세요.</p>
+        </div>
+
+        <form id="loginForm">
+          <div class="auth-field">
+            <label for="email"> 이메일 </label>
+
+            <input
+              id="email"
+              type="email"
+              placeholder="example@email.com"
+              required
+            />
+          </div>
+
+          <div class="auth-field">
+            <label for="password"> 비밀번호 </label>
+
+            <div class="password-input-wrap">
+              <input id="password" type="password" placeholder="비밀번호를 입력하세요" required />
+              <button id="togglePasswordButton" type="button" aria-label="비밀번호 보기" aria-pressed="false">보기</button>
+            </div>
+          </div>
+
+          <p id="loginMessage" class="auth-message"></p>
+
+          <button id="loginButton" class="auth-submit" type="submit">
+            로그인
+          </button>
+        </form>
+
+        <div class="auth-bottom">
+          <span> 아직 계정이 없나요? </span>
+
+          <a href="./signup.html"> 회원가입 </a>
+        </div>
+      </section>
+    </main>
+
+    <script src="./js/config.js"></script>
+    <script src="./js/login.js"></script>
+  </body>
+</html>

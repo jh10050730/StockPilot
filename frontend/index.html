@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>StockPilot</title>
+
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/components.css" />
+    <link rel="stylesheet" href="./css/home.css" />
+    <link rel="stylesheet" href="./css/responsive.css" />
+  </head>
+
+  <body>
+    <!-- =========================
+         HEADER
+    ========================== -->
+    <header id="appHeader" class="header"></header>
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+    <main class="container">
+      <!-- =========================
+             자산 요약
+        ========================== -->
+      <section id="homeSummary" class="home-summary" aria-labelledby="homeGreeting">
+        <div id="loggedInSummary" class="summary-content hidden">
+          <div class="summary-top">
+            <div>
+              <span class="summary-eyebrow">MY STOCKPILOT</span>
+              <h1 id="homeGreeting">안녕하세요.</h1>
+            </div>
+
+            <button
+              id="toggleBalanceButton"
+              class="balance-visibility-button"
+              type="button"
+              aria-pressed="false"
+            >
+              금액 숨기기
+            </button>
+          </div>
+
+          <div class="asset-overview">
+            <div class="asset-main">
+              <span>총 자산</span>
+              <strong id="totalAssetValue" data-value="12,480,000원">12,480,000원</strong>
+            </div>
+
+            <div class="asset-change">
+              <span>오늘의 수익</span>
+              <strong id="dailyProfitValue" class="increase" data-value="+124,500원 (+1.01%)">
+                +124,500원 (+1.01%)
+              </strong>
+            </div>
+          </div>
+
+          <p class="summary-mock-notice">현재 자산은 화면 확인을 위한 예시 데이터입니다.</p>
+        </div>
+
+        <div id="loggedOutSummary" class="logged-out-summary hidden">
+          <div>
+            <span class="summary-eyebrow">WELCOME TO STOCKPILOT</span>
+            <h1>주식 투자를 더 쉽게 시작해보세요.</h1>
+            <p>로그인하면 관심종목과 내 자산을 한눈에 확인할 수 있어요.</p>
+          </div>
+
+          <a href="./login.html" class="summary-login-button">로그인</a>
+        </div>
+      </section>
+
+      <!-- =========================
+             종목 검색
+        ========================== -->
+      <section class="search-section">
+        <div class="search-box">
+          <span class="search-icon"> ⌕ </span>
+
+          <input
+            id="stockSearchInput"
+            type="text"
+            placeholder="종목명 또는 종목코드를 검색해보세요"
+            autocomplete="off"
+          />
+        </div>
+
+        <div id="searchResult" class="search-result hidden"></div>
+      </section>
+
+      <!-- =========================
+             AI HERO
+        ========================== -->
+      <section id="aiAssistant" class="ai-hero">
+        <div class="ai-hero-left">
+          <div class="ai-badge">✦ StockPilot AI</div>
+
+          <h1>투자는 더 쉽게,<br />판단은 더 똑똑하게.</h1>
+
+          <p>
+            어려운 시장과 종목 정보를 쉽게 설명하고,
+            <br />
+            주문까지 자연스럽게 이어드릴게요.
+          </p>
+
+          <!-- AI 입력 -->
+          <div class="ai-input-wrapper">
+            <input
+              id="aiInput"
+              type="text"
+              placeholder="예: 삼성전자 최근 흐름 분석해줘"
+            />
+
+            <button id="aiSendButton" class="ai-send-button">↑</button>
+          </div>
+
+          <!-- 빠른 질문 -->
+          <div class="quick-actions">
+            <button class="quick-button" data-question="삼성전자 분석해줘">
+              삼성전자 분석
+            </button>
+
+            <button
+              class="quick-button"
+              data-question="오늘 국내 시장 요약해줘"
+            >
+              오늘 시장 요약
+            </button>
+
+            <button class="quick-button" data-question="오늘 인기 종목 알려줘">
+              인기 종목
+            </button>
+
+            <button
+              class="quick-button"
+              data-question="오늘 주식 뉴스 요약해줘"
+            >
+              뉴스 요약
+            </button>
+          </div>
+        </div>
+
+        <!-- 오른쪽 AI 카드 -->
+        <div class="ai-preview-card">
+          <div class="preview-header">
+            <div class="ai-circle">✦</div>
+
+            <div>
+              <strong>AI 시장 브리핑</strong>
+              <span>StockPilot AI</span>
+            </div>
+          </div>
+
+          <p class="preview-title">오늘 시장은 어떤가요?</p>
+
+          <div class="preview-item">
+            <span class="preview-dot"></span>
+
+            <p>
+              국내 주요 지수와 거래량을 분석해 시장 흐름을 확인할 수 있어요.
+            </p>
+          </div>
+
+          <div class="preview-item">
+            <span class="preview-dot"></span>
+
+            <p>관심 종목의 뉴스와 주요 이슈를 AI가 간단하게 정리해줘요.</p>
+          </div>
+
+          <div class="preview-item">
+            <span class="preview-dot"></span>
+
+            <p>현재는 프론트 개발용 예시 화면입니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+             AI RESPONSE
+        ========================== -->
+      <section id="aiResponseSection" class="ai-response-section hidden">
+        <div class="ai-response-top">
+          <div class="ai-circle">✦</div>
+
+          <strong> StockPilot AI </strong>
+        </div>
+
+        <div id="aiResponse"></div>
+      </section>
+
+      <!-- =========================
+             시장
+        ========================== -->
+      <section class="section market-section">
+        <div class="section-title-row">
+          <div>
+            <span class="section-small-title"> MARKET MOVERS </span>
+
+            <h2>오늘의 상승·하락 종목</h2>
+
+            <div class="market-session-info">
+              <span><i></i>국내 정규장 <b>09:00 ~ 15:30</b></span>
+              <span><i></i>현재 장중 목업</span>
+            </div>
+          </div>
+
+          <a href="./search.html" class="text-button">자세히 보기</a>
+        </div>
+
+        <div class="market-grid">
+          <!-- 상승률 1위 -->
+          <article class="market-card" data-stock-code="000660">
+            <div class="market-line-chart chart-red">
+              <svg viewBox="0 0 400 100" preserveAspectRatio="none" role="img" aria-label="SK하이닉스 상승 흐름 예시 차트">
+                <defs>
+                  <linearGradient id="kospiArea" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#f04452" stop-opacity="0.22" />
+                    <stop offset="100%" stop-color="#f04452" stop-opacity="0" />
+                  </linearGradient>
+                </defs>
+                <line class="market-chart-guide" x1="0" y1="50" x2="400" y2="50" />
+                <path class="chart-area" fill="url(#kospiArea)" d="M0 78 L35 68 L70 72 L105 56 L140 62 L175 45 L210 49 L245 33 L280 39 L315 22 L350 27 L400 13 L400 100 L0 100 Z" />
+                <polyline points="0,78 35,68 70,72 105,56 140,62 175,45 210,49 245,33 280,39 315,22 350,27 400,13" />
+                <circle cx="400" cy="13" r="4" />
+              </svg>
+            </div>
+
+            <div class="market-card-top">
+              <div>
+                <span class="market-rank rise">상승 1위</span>
+                <strong class="market-stock-name">SK하이닉스</strong>
+                <small>000660 · KOSPI</small>
+              </div>
+
+            </div>
+
+            <strong class="market-price"> 192,000원 </strong>
+
+            <div class="market-change increase">+4,200원 (+2.21%)</div>
+
+          </article>
+
+          <!-- 하락률 1위 -->
+          <article class="market-card" data-stock-code="035720">
+            <div class="market-line-chart chart-blue">
+              <svg viewBox="0 0 400 100" preserveAspectRatio="none" role="img" aria-label="카카오 하락 흐름 예시 차트">
+                <defs>
+                  <linearGradient id="kosdaqArea" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#3182f6" stop-opacity="0.22" />
+                    <stop offset="100%" stop-color="#3182f6" stop-opacity="0" />
+                  </linearGradient>
+                </defs>
+                <line class="market-chart-guide" x1="0" y1="50" x2="400" y2="50" />
+                <path class="chart-area" fill="url(#kosdaqArea)" d="M0 22 L35 31 L70 27 L105 40 L140 34 L175 47 L210 53 L245 49 L280 61 L315 57 L350 68 L400 72 L400 100 L0 100 Z" />
+                <polyline points="0,22 35,31 70,27 105,40 140,34 175,47 210,53 245,49 280,61 315,57 350,68 400,72" />
+                <circle cx="400" cy="72" r="4" />
+              </svg>
+            </div>
+
+            <div class="market-card-top">
+              <div>
+                <span class="market-rank fall">하락 1위</span>
+                <strong class="market-stock-name">카카오</strong>
+                <small>035720 · KOSPI</small>
+              </div>
+
+            </div>
+
+            <strong class="market-price"> 58,400원 </strong>
+
+            <div class="market-change decrease">-670원 (-1.13%)</div>
+
+          </article>
+        </div>
+
+        <p class="mock-notice">
+          ※ 현재 순위와 종목 가격은 화면 개발을 위한 예시 데이터입니다.
+        </p>
+      </section>
+
+      <!-- =========================
+             AI BRIEFING
+        ========================== -->
+      <section class="ai-briefing home-ai-briefing">
+        <div class="briefing-icon">✦</div>
+
+        <div class="briefing-content">
+          <span> AI MARKET BRIEFING </span>
+
+          <h2>오늘 시장, AI가 간단하게 정리해드려요.</h2>
+
+          <p>
+            실제 시장 API와 AI가 연결되면 주요 지수, 거래량, 뉴스, 관심 종목을
+            분석해 이곳에 요약 내용을 보여줄 예정입니다.
+          </p>
+        </div>
+
+        <button class="briefing-button">AI 분석 보기</button>
+      </section>
+
+      <!-- =========================
+             종목 영역
+        ========================== -->
+      <div class="bottom-grid home-stocks-grid">
+        <!-- 인기 종목 -->
+        <section class="stock-section">
+          <div class="section-title-row">
+            <div>
+              <span class="section-small-title"> TRENDING </span>
+
+              <h2>많이 보는 종목</h2>
+            </div>
+
+            <a href="./search.html" class="text-button">전체보기</a>
+          </div>
+
+          <div id="stockList" class="stock-list"></div>
+        </section>
+
+        <!-- 관심 종목 -->
+        <section class="watch-section">
+          <div class="section-title-row">
+            <div>
+              <span class="section-small-title"> WATCHLIST </span>
+
+              <h2>관심 종목</h2>
+            </div>
+
+            <a href="./favorites.html" class="text-button">전체보기</a>
+          </div>
+
+          <div id="homeWatchList" class="home-watch-list hidden"></div>
+
+          <div id="homeWatchEmpty" class="watch-empty">
+            <div class="watch-star">☆</div>
+
+            <strong> 아직 관심 종목이 없어요 </strong>
+
+            <p>관심 있는 종목을 추가하면 빠르게 확인할 수 있어요.</p>
+
+            <button class="blue-button">종목 추가하기</button>
+          </div>
+        </section>
+      </div>
+
+      <!-- =========================
+             AI 기능
+        ========================== -->
+      <section class="feature-section">
+        <div class="section-title-row">
+          <div>
+            <span class="section-small-title"> AI FEATURES </span>
+
+            <h2>StockPilot AI로 할 수 있는 것</h2>
+          </div>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-icon">✦</div>
+
+            <h3>종목 분석</h3>
+
+            <p>
+              주가 데이터와 여러 정보를 바탕으로 종목의 흐름을 쉽게 정리합니다.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">◫</div>
+
+            <h3>뉴스 요약</h3>
+
+            <p>수많은 주식 뉴스를 AI가 읽고 핵심 내용만 간단하게 보여줍니다.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">◎</div>
+
+            <h3>포트폴리오 분석</h3>
+
+            <p>
+              보유 종목 구성과 비중을 확인하고 투자 현황을 한눈에 볼 수
+              있습니다.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">⏱</div>
+
+            <h3>자동 주문 설정</h3>
+
+            <p>특정 가격 조건을 설정하는 자동 주문 UI를 제공할 예정입니다.</p>
+
+            <span class="feature-tag"> 개발 예정 </span>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <!-- =========================
+         FLOATING AI
+    ========================== -->
+    <button id="floatingAiButton" class="floating-ai-button">
+      <span> ✦ </span>
+
+      AI
+    </button>
+
+    <script src="./js/header.js"></script>
+    <script src="./js/config.js"></script>
+    <script src="./js/stock-data.js"></script>
+    <script src="./js/watchlist.js"></script>
+    <script src="./js/home.js"></script>
+  </body>
+</html>
